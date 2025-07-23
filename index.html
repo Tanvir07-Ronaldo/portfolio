@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohammad Tanvir – AI & Web Designer</title>
+  <style>
+    body { margin:0; font-family: sans-serif; color:#333; }
+    nav { position: fixed; top: 0; width:100%; background:rgba(15,23,42,0.9); padding:1rem; display:flex; justify-content:space-between; z-index:10; }
+    nav a { color:#fff; margin:0 0.5rem; text-decoration:none; }
+    header { height:100vh; background:#0f172a; color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; overflow:hidden; position:relative; }
+    header canvas { position:absolute; top:0; left:0; width:100%; height:100%; }
+    header img { width:160px; height:160px; border-radius:50%; border:4px solid #fff; z-index:1; }
+    section { padding:4rem 1rem; max-width:1000px; margin:0 auto; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:1.5rem; }
+    .card { background:#fff; padding:1.5rem; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.06); }
+    footer { background:#0f172a; color:#fff; text-align:center; padding:2rem; }
+    button { background:#2563eb; color:#fff; border:none; padding:1rem 2rem; border-radius:6px; cursor:pointer; font-size:1rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div><strong>Mohammad Tanvir</strong></div>
+  <div>
+    <a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header id="home">
+  <canvas id="bg"></canvas>
+  <img src="received_698335812175819.jpeg" alt="Mohammad Tanvir">
+  <h1>Mohammad Tanvir</h1>
+  <p>AI Specialist & Web Designer</p>
+  <button onclick="document.querySelector('#contact').scrollIntoView({ behavior:'smooth' })">Let’s Connect</button>
+</header>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>I'm a B.Sc. AI student at Woosong University with a passion for combining intelligent systems and web design to create engaging, human-centered experiences. I’ve worked in data engineering, mobile interface, and coaching—bringing discipline and creativity to every team.</p>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="card"><h3>Diabetes Detection by ML</h3><p>96% accuracy from patient dataset.</p></div>
+    <div class="card"><h3>AI Ethics in Self-Driving Cars</h3><p>Deep learning models with real‑time ethical decisions.</p></div>
+    <div class="card"><h3>Uniconnect Platform</h3><p>Student peer‑to‑peer platform.</p></div>
+    <div class="card"><h3>Smart Cane for the Blind</h3><p>Arduino + HS404 sensor navigation aid.</p></div>
+  </div>
+</section>
+
+<section id="experience">
+  <h2>Experience</h2>
+  <ul>
+    <li><strong>Data Engineer Intern</strong> at Cognifyz Technologies (2025): Railway data analytics & visualization</li>
+    <li><strong>Sports Statistician</strong> at Genius Sports (2022): Mobile UI & data augmentation</li>
+    <li><strong>Coach</strong> – Handball & Basketball (2019‑22): Training programs, logistics, clinics</li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:mtanvir9820@gmail.com">mtanvir9820@gmail.com</a><br>
+     Phone: +82 010‑4638‑2868</p>
+  <button onclick="window.open('mailto:mtanvir9820@gmail.com')">Email Me</button>
+</section>
+
+<footer>&copy; 2025 Mohammad Tanvir</footer>
+
+<script>
+  const canvas = document.getElementById('bg');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  let particles = [];
+  // Simple ripple animation inspired by Sarowar’s site :contentReference[oaicite:7]{index=7}
+  class P{constructor(){this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.r=1+Math.random()*2; this.a=0.5;}upd(){this.r+=0.5; this.a-=0.005;}draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,2*Math.PI);ctx.fillStyle="rgba(255,255,255,"+this.a+")";ctx.fill();}}
+  function anim(){ctx.clearRect(0,0,canvas.width,canvas.height); if(Math.random()<0.05)particles.push(new P()); particles.forEach((p,i)=>{p.upd(); p.draw(); if(p.a<0)particles.splice(i,1)}); requestAnimationFrame(anim);}
+  anim();
+</script>
+
+</body>
+</html>
